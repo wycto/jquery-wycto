@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>图片上传插件wycto.com提供</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<button id="up">图片上传</button>
+<img id="img"/>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="plugins/wycto.upload.min.js"></script>
+<script>
+	$(function(){
+		$("#up").wyctoUpload({
+			success:function(a){
+				$("#img").attr("src",a);
+			}
+		});
+	});
+</script>
+</body>
+</html>
