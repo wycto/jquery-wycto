@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>图片上传插件wycto.com提供</title>
+	<title>this is test</title>
 	<meta charset="utf-8">
 </head>
 <body>
-<button id="up">图片上传</button>
-<img id="img"/>
+<button id="up">我是普通按钮</button>
+<hr>
+我是文件上传type=file
+<br>
+<input type="file" id="up2">
+<img id="img" src="">
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="plugins/wycto.upload.min.js"></script>
-<script>
-	$(function(){
-		$("#up").wyctoUpload({
-			success:function(a){
-				$("#img").attr("src",a);
-			}
-		});
+<script type="text/javascript" src="plugins/wycto.upload.js"></script>
+<script type="text/javascript">
+	$("#up").wyctoUpload({
+		method: 0,//后上传
+        url: "/default/ajax/uploadfile",//服务器保存方法，返回图片src，method设置为1有效
+        quality: 1,//0-1
+        saveExt: '',//当quality设置时候的保存格式jpg/png
+        allowType: ["jpg", "jpeg", "png", "gif", "bmp"],//允许上传格式
+        allowSize: 0,//允许上传大小
+		success:function(data){
+			$("#img").attr("src",data.src);
+		},
+		error: function(msg){
+			alert(msg);
+		}
+	});
+	$("#up2").wyctoUpload({
+		method: 0,//后上传
+        url: "/default/ajax/uploadfile",//服务器保存方法，返回图片src，method设置为1有效
+        quality: 1,//0-1
+        saveExt: '',//当quality设置时候的保存格式jpg/png
+        allowType: ["jpg", "jpeg", "png", "gif", "bmp"],//允许上传格式
+        allowSize: 0,//允许上传大小
+		success:function(data){
+			$("#img").attr("src",data.src);
+		},
+		error: function(msg){
+			alert(msg);
+		}
 	});
 </script>
 </body>

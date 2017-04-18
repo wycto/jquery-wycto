@@ -10,14 +10,19 @@
             success: success,
             error: error
         };
+
         var num = parseInt(Math.random() * 1000);
         var tag = $(this).attr('class') || $(this).attr('id') || num;
-        $(this).after('<input id="wycto-fileupload-' + tag + '" type="file" accept="image/*" multiple="multiple" style="display:none"/><img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
-
-        var fileInput = $("#wycto-fileupload-" + tag);
-        $(this).click(function() {
-            fileInput.click();
-        });
+        if($(this).attr('type')=='file'){
+            $(this).after('<img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
+            var fileInput = $(this);
+        }else{
+            $(this).after('<input id="wycto-fileupload-' + tag + '" type="file" accept="image/*" multiple="multiple" style="display:none"/><img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
+            var fileInput = $("#wycto-fileupload-" + tag);
+            $(this).click(function() {
+                fileInput.click();
+            });
+        }
 
         var resource = $("#resource-" + tag)[0];
 
