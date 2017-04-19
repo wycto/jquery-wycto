@@ -11,13 +11,25 @@
             error: error
         };
 
+        var config = $.extend(defaults, options);
+        var quality = config.quality;
+        var saveExt = config.saveExt;
+        var success = config.success;
+        var error = config.error;
+        
         var num = parseInt(Math.random() * 1000);
         var tag = $(this).attr('class') || $(this).attr('id') || num;
         if($(this).attr('type')=='file'){
             $(this).after('<img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
             var fileInput = $(this);
         }else{
-            $(this).after('<input id="wycto-fileupload-' + tag + '" type="file" accept="image/*" multiple="multiple" style="display:none"/><img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
+        	var imgtype = config.allowType;
+        	var typestr = "";
+        	$.each(imgtype,function(n,value){
+                typestr += ",image/" + value;
+            });
+        	typestr = typestr.substr(1);
+            $(this).after('<input id="wycto-fileupload-' + tag + '" type="file" accept="'+typestr+'" multiple="multiple" style="display:none"/><img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
             var fileInput = $("#wycto-fileupload-" + tag);
             $(this).click(function() {
                 fileInput.click();
@@ -25,13 +37,7 @@
         }
 
         var resource = $("#resource-" + tag)[0];
-
-        var config = $.extend(defaults, options);
-        var quality = config.quality;
-        var saveExt = config.saveExt;
-        var success = config.success;
-        var error = config.error;
-
+        
         fileInput.each(function(i) {
             fileInput.change(function(e) {
                 handleFileSelect(fileInput)
