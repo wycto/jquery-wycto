@@ -12,9 +12,13 @@
 <input type="file" id="up2">
 <img id="img" src="">
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="plugins/wycto.upload.js"></script>
+<script type="text/javascript" src="jquery.wycto.js"></script>
 <script type="text/javascript">
-	$("#up").wyctoUpload({
+	wycto.upload({
+		elem:'#up'
+	});
+
+	/*$("#up").wyctoUpload({
 		method: 0,//后上传
         url: "/default/ajax/uploadfile",//服务器保存方法，返回图片src，method设置为1有效
         quality: 1,//0-1
@@ -41,7 +45,7 @@
 		error: function(msg){
 			alert(msg);
 		}
-	});
+	});*/
 </script>
 </body>
 </html>

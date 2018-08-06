@@ -16,9 +16,8 @@
         var saveExt = config.saveExt;
         var success = config.success;
         var error = config.error;
-        
-        var num = parseInt(Math.random() * 1000);
-        var tag = $(this).attr('class') || $(this).attr('id') || num;
+
+        var tag = parseInt(Math.random() * 1000);
         if($(this).attr('type')=='file'){
             $(this).after('<img src="" id="resource-' + tag + '" style="display:none"/><canvas id="canvas' + tag + '" style="display:none"></canvas>');
             var fileInput = $(this);
